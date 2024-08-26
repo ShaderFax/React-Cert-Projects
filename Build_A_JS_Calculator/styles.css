@@ -16,9 +16,9 @@ body {
 }
 
 .calc-body {
-    padding: 5px;
+    padding: 4px;
     background: black;
-    width: 320px;
+    width: 332px;
     position: relative;
 }
 
@@ -45,6 +45,8 @@ button {
     font-family: Share Tech Mono, monospace;
     font-size: 20px;
     cursor: default;
+    border-radius: 64px;
+    margin-top: 0.2em;
 }
   
 button:hover {
