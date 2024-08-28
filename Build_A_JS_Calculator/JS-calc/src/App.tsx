@@ -16,7 +16,7 @@ function App() {
             <div id="expression"></div>
           </div>
           <button onClick={() => buttonPress("clear")} className="grey red-text" id="clear">C</button>
-          <button onClick={() => buttonPress("negative")} className="grey white-text" id="negative">+/-</button>
+          <button onClick={() => buttonPress("brackets")} className=" grey green-text">()</button>
           <button onClick={() => buttonPress("percentage")} className="grey green-text" id="pecentage">%</button>
           <button onClick={() => buttonPress("/")} className="grey green-text" id="divide">/</button>
           <button onClick={() => buttonPress("7")} className="grey white-text" id="seven">7</button>
@@ -31,6 +31,7 @@ function App() {
           <button onClick={() => buttonPress("2")} className="grey white-text" id="two">2</button>
           <button onClick={() => buttonPress("3")} className="grey white-text" id="three">3</button>
           <button onClick={() => buttonPress("+")} className="grey green-text" id="add">+</button>
+          <button onClick={() => buttonPress("negative")} className="grey white-text" id="negative">+/-</button>
           <button onClick={() => buttonPress("0")} className="grey white-text" id="zero">0</button>
           <button onClick={() => buttonPress(".")} className="grey white-text" id="decimal">.</button>
           <button onClick={() => buttonPress("=")} className="green white-text" id="equals">=</button>
@@ -41,7 +42,3 @@ function App() {
 }
 
 export default App;
-
-function handleNumbers() {
-  
-}

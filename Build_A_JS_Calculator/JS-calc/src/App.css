@@ -16,7 +16,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
+  }
+
+  #calculator {
+    display: grid;
+    grid-template-areas: 
+     "display display display display"
+     "clear bracket percentage divide"
+     "seven eight nine multiply"
+     "four five six subtract"
+     "one two three add"
+     "negative zero decimal equals";
+     grid-template-columns: 50px 50px 50px 50px;
+     
   }
   
   .grey {
@@ -42,4 +56,12 @@
   .green-text {
     color: rgb(0, 185, 0);
     font-size: 1em;
+  }
+
+  button {
+    border-radius: 64px;
+  }
+
+  button:hover {
+    background-color: #717171;
   }
