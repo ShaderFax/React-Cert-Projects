@@ -11,13 +11,14 @@ function App() {
     <h1>Calculator App</h1>
       <div className="container">
         <div id="calculator">
-          <div id="display" style={{textAlign: "right"}}>
-            <div id="answer"></div>
+          <div id="display" style={{ textAlign: "right" }}>
+            <div id="answer">0</div>
             <div id="expression"></div>
+            <hr></hr>
           </div>
           <button onClick={() => buttonPress("clear")} className="grey red-text" id="clear">C</button>
-          <button onClick={() => buttonPress("brackets")} className=" grey green-text">()</button>
-          <button onClick={() => buttonPress("percentage")} className="grey green-text" id="pecentage">%</button>
+          <button onClick={() => buttonPress("brackets")} className="grey green-text" id="brackets">()</button>
+          <button onClick={() => buttonPress("percentage")} className="grey green-text" id="percentage">%</button>
           <button onClick={() => buttonPress("/")} className="grey green-text" id="divide">/</button>
           <button onClick={() => buttonPress("7")} className="grey white-text" id="seven">7</button>
           <button onClick={() => buttonPress("8")} className="grey white-text" id="eight">8</button>
