@@ -5,7 +5,11 @@ function App() {
   const [answer, setAnswer] = useState("0");
   const [expression, setExpression] = useState("0");
 
+  const isOperator = (symbol: string) => {
+    return /[*/+-]/.test(symbol);
+  }
 
+  const et = expression.trim();
 
   const buttonPress = (symbol: string) => {
     if (symbol === "clear") {
@@ -18,7 +22,7 @@ function App() {
         if(answer === "") return;
         setAnswer((parseFloat(answer) / 100).toString());
       } else if (isOperator(symbol)){
-        
+        setExpression(et + " " + symbol + " ");
       }
     }
 
@@ -28,8 +32,8 @@ function App() {
       <div className="container">
         <div id="calculator">
           <div id="display" style={{ textAlign: "right" }}>
-            <div id="answer">0</div>
-            <div id="expression"></div>
+            <div id="answer">{answer}</div>
+            <div id="expression">{expression}</div>
             <hr></hr>
           </div>
           <button onClick={() => buttonPress("clear")} className="grey red-text" id="clear">C</button>
