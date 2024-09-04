@@ -4,13 +4,22 @@ import './App.css';
 function App() {
   const [answer, setAnswer] = useState("0");
   const [expression, setExpression] = useState("0");
-  
+
+
+
   const buttonPress = (symbol: string) => {
     if (symbol === "clear") {
       setAnswer("0");
       setExpression("0");
-      return;
-    }
+      } else if (symbol === "negative") {
+        if(answer === "") return;
+        setAnswer(answer.toString().charAt(0) === "-" ? answer.slice(1) : "-" + answer);
+      } else if (symbol === "percentage") {
+        if(answer === "") return;
+        setAnswer((parseFloat(answer) / 100).toString());
+      } else if (isOperator(symbol)){
+        
+      }
     }
 
   return (
