@@ -2,9 +2,16 @@ import { useState } from "react";
 import './App.css';
 
 function App() {
+  const [answer, setAnswer] = useState("0");
+  const [expression, setExpression] = useState("0");
+  
   const buttonPress = (symbol: string) => {
-    console.log(symbol)
-  }
+    if (symbol === "clear") {
+      setAnswer("0");
+      setExpression("0");
+      return;
+    }
+    }
 
   return (
     <>
