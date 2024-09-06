@@ -90,6 +90,8 @@
   #expression {
     font-size: 30px;
     height: 30px;
+    margin-top: 0.5em;
+    margin-right: 0.2em;
   }
 
   #display {
@@ -175,3 +177,7 @@
   #equals {
     grid-area: equals;
   }
+
+hr {
+  margin: 1em;
+}
