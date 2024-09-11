@@ -3,14 +3,6 @@ import './App.css'
 
 function App() {
 
-  const handleTimer = () => {
-
-  }
-
-  const handleAlarm = () => {
-    
-  }
-
   return (
     <>
       <textarea id="editor"></textarea>
