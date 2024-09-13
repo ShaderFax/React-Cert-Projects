@@ -10,7 +10,11 @@ const interval = 60;
 function App() {
   const [breakTime, setBreakTime] = useState(defaultBreakTime);
   const [sessionTime, setSessionTime] = useState(defaultSessionTime);
-  const [displayState, setDisplayState] = useState<DisplayState>("session");
+  const [displayState, setDisplayState] = useState<DisplayState>({
+    time: sessionTime,
+    timeType: "Session",
+    timerRunning: false
+  });
 
 
   return (
