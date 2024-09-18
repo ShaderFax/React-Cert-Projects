@@ -1,7 +1,9 @@
-import { useState } from "react"
-import './App.css'
+import { useState, useEffect } from "react";
+import AlarmSound from "./assets/Cr1tikal disappears.mp3";
+import "./App.css";
 import { DisplayState } from "./helper";
 import TimeSetter from "./TimeSetter";
+import Display from "./Display";
 
 const defaultBreakTime = 5 * 60;
 const defaultSessionTime = 25 * 60;
@@ -15,38 +17,111 @@ function App() {
   const [displayState, setDisplayState] = useState<DisplayState>({
     time: sessionTime,
     timeType: "Session",
-    timerRunning: false
+    timerRunning: false,
   });
 
+  useEffect(() => {
+    let timerID: number;
+    if (!displayState.timerRunning) return;
+
+    if (displayState.timerRunning) {
+      timerID = window.setInterval(decrementDisplay, 1000);
+    }
+
+    return () => {
+      window.clearInterval(timerID);
+    };
+  }, [displayState.timerRunning]);
+
+  useEffect(() => {
+    if (displayState.time === 0) {
+      const audio = document.getElementById("beep") as HTMLAudioElement;
+      audio.currentTime = 2;
+      audio.play().catch((err) => console.log(err));
+      setDisplayState((prev) => ({
+        ...prev,
+        timeType: prev.timeType === "Session" ? "Break" : "Session",
+        time: prev.timeType === "Session" ? breakTime : sessionTime,
+      }));
+    }
+  }, [displayState, breakTime, sessionTime]);
+
+  const reset = () => {
+    setBreakTime(defaultBreakTime);
+    setSessionTime(defaultSessionTime);
+    setDisplayState({
+      time: defaultSessionTime,
+      timeType: "Session",
+      timerRunning: false,
+    });
+    const audio = document.getElementById("beep") as HTMLAudioElement;
+    audio.pause();
+    audio.currentTime = 0;
+  };
+
+  const startStop = () => {
+    setDisplayState((prev) => ({
+      ...prev,
+      timerRunning: !prev.timerRunning,
+    }));
+  };
+
+  const changeBreakTime = (time: number) => {
+    if (displayState.timerRunning) return;
+    setBreakTime(time);
+  };
+
+  const decrementDisplay = () => {
+    setDisplayState((prev) => ({
+      ...prev,
+      time: prev.time - 1,
+    }));
+  };
+
+  const changeSessionTime = (time: number) => {
+    if (displayState.timerRunning) return;
+    setSessionTime(time);
+    setDisplayState({
+      time: time,
+      timeType: "Session",
+      timerRunning: false,
+    });
+  };
 
   return (
-    <>
-      <textarea id="editor"></textarea>
-      <div id="preview">
-        <div id="session-length">25</div>
-        <div id="break-length">5</div>
-        <div id="button-container">
-          <div id="break-label">Break Length
-            <button type="button" id="break-increment">+</button>
-            <button type="button" id="break-decrement">-</button>
-          </div>
-          <TimeSetter />
-          <div id="session-label">Session Length
-            <button type="button" id="session-increment">+</button>
-            <button type="button" id="session-decrement">-</button>
-          </div>
-          <TimeSetter />
+    <div className="clock">
+      <div className="setters">
+        <div className="break">
+          <h4 id="break-label">Break Length</h4>
+          <TimeSetter
+            time={breakTime}
+            setTime={changeBreakTime}
+            min={min}
+            max={max}
+            interval={interval}
+            type="break"
+          />
         </div>
-        <div id="timer-label">Session
-          <div id="time-left"></div>
-          <button type="button" id="start_stop">Start</button>
-          <button type="button" id="reset">Reset</button>
+        <div className="session">
+          <h4 id="session-label">Session Length</h4>
+          <TimeSetter
+            time={sessionTime}
+            setTime={changeSessionTime}
+            min={min}
+            max={max}
+            interval={interval}
+            type="session"
+          />
         </div>
-        <Display />
-        <audio id="beep" src={AlarmSound}></audio>
       </div>
-    </>
-  )
+      <Display
+        displayState={displayState}
+        reset={reset}
+        startStop={startStop}
+      />
+      <audio id="beep" src={AlarmSound} />
+    </div>
+  );
 }
 
-export default App
+export default App;
