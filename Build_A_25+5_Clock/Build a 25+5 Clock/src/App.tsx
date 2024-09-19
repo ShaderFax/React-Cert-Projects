@@ -1,5 +1,6 @@
+
 import { useState, useEffect } from "react";
-import AlarmSound from "./assets/Cr1tikal disappears.mp3";
+import AlarmSound from "./assets/AlarmSound.mp3";
 import "./App.css";
 import { DisplayState } from "./helper";
 import TimeSetter from "./TimeSetter";

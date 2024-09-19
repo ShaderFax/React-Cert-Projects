@@ -1,4 +1,3 @@
-import React from "react";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
 interface TimerSetterProps {
