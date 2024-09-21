@@ -1,35 +1,29 @@
 import { useState } from 'react'
+import quotes from './assets/quotes.json'
 import './App.css'
 
+interface Quote {
+  quote: string,
+  author: string
+}
+
+const getRandomQuote = (): Quote => {
+  return quotes[Math.floor(Math.random() * quotes.length)];
+}
+
 function App() {
-  const [count, setCount] = useState(0)
-
-  const getQuote = () => {
-
-  }
-
-  const displayQuote = () => {
-
-  }
-
-  const getAuthor = () => {
-
-  }
-
-  const displayAuthor = () => {
-
-  }
+  const [quote, setQuote] = useState<Quote>(getRandomQuote());
 
   return (
     <>
       <div id="quote-box">
         <div id='text'>
-          Test
+          {quote.quote}
         </div>
         <div id="author">
-          Test
+          {quote.author}
         </div>
-        <button id='new-quote'>New Quote</button>
+        <button id='new-quote' onClick={}>New Quote</button>
         <a type="button" id='tweet-quote' href="https://twitter.com/intent/tweet">Tweet Quote</a>
       </div>
     </>
