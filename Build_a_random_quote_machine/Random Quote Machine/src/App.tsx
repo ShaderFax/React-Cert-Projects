@@ -6,13 +6,17 @@ interface Quote {
   quote: string,
   author: string
 }
-
+/* Gotta be able to randomize the quote when newQuote button is clicked. */
 const getRandomQuote = (): Quote => {
   return quotes[Math.floor(Math.random() * quotes.length)];
 }
 
 function App() {
   const [quote, setQuote] = useState<Quote>(getRandomQuote());
+
+  const changeQuote = () => {
+    setQuote(getRandomQuote);
+  }
 
   return (
     <>
@@ -23,7 +27,7 @@ function App() {
         <div id="author">
           {quote.author}
         </div>
-        <button id='new-quote' onClick={}>New Quote</button>
+        <button id='new-quote' onClick={changeQuote}>New Quote</button>
         <a type="button" id='tweet-quote' href="https://twitter.com/intent/tweet">Tweet Quote</a>
       </div>
     </>
